@@ -1,0 +1,371 @@
+{
+  "name": "Demo User",
+  "email": "demo@expensetrail.local",
+  "budget": 50000,
+  "categories": [
+    "Food",
+    "Transport",
+    "Utilities",
+    "Shopping",
+    "Entertainment",
+    "Healthcare",
+    "Education",
+    "Travel",
+    "Housing",
+    "Bills",
+    "Personal",
+    "Savings",
+    "Salary",
+    "Freelance",
+    "Investment",
+    "Other",
+    "Fitness",
+    "Gifts",
+    "Pets"
+  ],
+  "categoryBudgets": {
+    "Food": 9000,
+    "Transport": 4000,
+    "Utilities": 3500,
+    "Shopping": 7000,
+    "Entertainment": 3000,
+    "Healthcare": 2500,
+    "Travel": 4500,
+    "Housing": 18000,
+    "Bills": 3000,
+    "Personal": 2500,
+    "Fitness": 2000,
+    "Pets": 1500
+  },
+  "entries": [
+    {
+      "id": "entry-001",
+      "name": "Monthly salary",
+      "amount": 85000,
+      "type": "income",
+      "category": "Salary",
+      "date": "2026-06-01",
+      "paymentMethod": "Bank",
+      "notes": "Primary salary credit"
+    },
+    {
+      "id": "entry-002",
+      "name": "Freelance website update",
+      "amount": 12000,
+      "type": "income",
+      "category": "Freelance",
+      "date": "2026-06-08",
+      "paymentMethod": "Bank",
+      "notes": "Client milestone payment"
+    },
+    {
+      "id": "entry-003",
+      "name": "Apartment rent",
+      "amount": 18000,
+      "type": "expense",
+      "category": "Housing",
+      "date": "2026-06-02",
+      "paymentMethod": "Bank",
+      "notes": "Monthly rent"
+    },
+    {
+      "id": "entry-004",
+      "name": "Electricity bill",
+      "amount": 2200,
+      "type": "expense",
+      "category": "Utilities",
+      "date": "2026-06-03",
+      "paymentMethod": "UPI",
+      "notes": "June utility payment"
+    },
+    {
+      "id": "entry-005",
+      "name": "Broadband recharge",
+      "amount": 899,
+      "type": "expense",
+      "category": "Bills",
+      "date": "2026-06-03",
+      "paymentMethod": "UPI",
+      "notes": "Monthly internet plan"
+    },
+    {
+      "id": "entry-006",
+      "name": "Groceries - weekly stock",
+      "amount": 2650,
+      "type": "expense",
+      "category": "Food",
+      "date": "2026-06-04",
+      "paymentMethod": "Card",
+      "notes": "Supermarket run"
+    },
+    {
+      "id": "entry-007",
+      "name": "Office cab rides",
+      "amount": 980,
+      "type": "expense",
+      "category": "Transport",
+      "date": "2026-06-05",
+      "paymentMethod": "UPI",
+      "notes": "Ride app"
+    },
+    {
+      "id": "entry-008",
+      "name": "Gym membership",
+      "amount": 1499,
+      "type": "expense",
+      "category": "Fitness",
+      "date": "2026-06-06",
+      "paymentMethod": "Card",
+      "notes": "Monthly membership"
+    },
+    {
+      "id": "entry-009",
+      "name": "Movie night",
+      "amount": 720,
+      "type": "expense",
+      "category": "Entertainment",
+      "date": "2026-06-07",
+      "paymentMethod": "Card",
+      "notes": "Tickets and snacks"
+    },
+    {
+      "id": "entry-010",
+      "name": "Pet food and treats",
+      "amount": 1100,
+      "type": "expense",
+      "category": "Pets",
+      "date": "2026-06-09",
+      "paymentMethod": "UPI",
+      "notes": "Monthly pet supplies"
+    },
+    {
+      "id": "entry-011",
+      "name": "Lunch with team",
+      "amount": 840,
+      "type": "expense",
+      "category": "Food",
+      "date": "2026-06-10",
+      "paymentMethod": "UPI",
+      "notes": "Work lunch"
+    },
+    {
+      "id": "entry-012",
+      "name": "Skincare restock",
+      "amount": 1650,
+      "type": "expense",
+      "category": "Personal",
+      "date": "2026-06-11",
+      "paymentMethod": "Card",
+      "notes": "Personal care order"
+    },
+    {
+      "id": "entry-013",
+      "name": "Online course subscription",
+      "amount": 2499,
+      "type": "expense",
+      "category": "Education",
+      "date": "2026-06-12",
+      "paymentMethod": "Card",
+      "notes": "Frontend design course"
+    },
+    {
+      "id": "entry-014",
+      "name": "Weekend train tickets",
+      "amount": 1850,
+      "type": "expense",
+      "category": "Travel",
+      "date": "2026-06-14",
+      "paymentMethod": "UPI",
+      "notes": "Short family visit"
+    },
+    {
+      "id": "entry-015",
+      "name": "Restaurant dinner",
+      "amount": 1750,
+      "type": "expense",
+      "category": "Food",
+      "date": "2026-06-15",
+      "paymentMethod": "Card",
+      "notes": "Dinner with friends"
+    },
+    {
+      "id": "entry-016",
+      "name": "Medicine refill",
+      "amount": 950,
+      "type": "expense",
+      "category": "Healthcare",
+      "date": "2026-06-16",
+      "paymentMethod": "UPI",
+      "notes": "Pharmacy order"
+    },
+    {
+      "id": "entry-017",
+      "name": "Shopping - sneakers",
+      "amount": 4200,
+      "type": "expense",
+      "category": "Shopping",
+      "date": "2026-06-17",
+      "paymentMethod": "Card",
+      "notes": "Lifestyle purchase"
+    },
+    {
+      "id": "entry-018",
+      "name": "Fuel refill",
+      "amount": 2200,
+      "type": "expense",
+      "category": "Transport",
+      "date": "2026-06-18",
+      "paymentMethod": "Card",
+      "notes": "Two-wheeler fuel"
+    },
+    {
+      "id": "entry-019",
+      "name": "SIP investment",
+      "amount": 5000,
+      "type": "expense",
+      "category": "Investment",
+      "date": "2026-06-20",
+      "paymentMethod": "Bank",
+      "notes": "Monthly SIP contribution"
+    },
+    {
+      "id": "entry-020",
+      "name": "Birthday gift",
+      "amount": 1800,
+      "type": "expense",
+      "category": "Gifts",
+      "date": "2026-06-21",
+      "paymentMethod": "UPI",
+      "notes": "Gift for cousin"
+    },
+    {
+      "id": "entry-021",
+      "name": "Groceries - second half",
+      "amount": 3100,
+      "type": "expense",
+      "category": "Food",
+      "date": "2026-06-22",
+      "paymentMethod": "Card",
+      "notes": "Mid-month groceries"
+    },
+    {
+      "id": "entry-022",
+      "name": "Coffee and snacks",
+      "amount": 460,
+      "type": "expense",
+      "category": "Food",
+      "date": "2026-06-23",
+      "paymentMethod": "Cash",
+      "notes": "Cafe spending"
+    },
+    {
+      "id": "entry-023",
+      "name": "Mobile recharge",
+      "amount": 599,
+      "type": "expense",
+      "category": "Bills",
+      "date": "2026-06-24",
+      "paymentMethod": "UPI",
+      "notes": "Prepaid mobile plan"
+    },
+    {
+      "id": "entry-024",
+      "name": "Streaming subscription",
+      "amount": 649,
+      "type": "expense",
+      "category": "Entertainment",
+      "date": "2026-06-25",
+      "paymentMethod": "Card",
+      "notes": "Monthly OTT subscription"
+    },
+    {
+      "id": "entry-025",
+      "name": "Doctor consultation",
+      "amount": 1200,
+      "type": "expense",
+      "category": "Healthcare",
+      "date": "2026-06-26",
+      "paymentMethod": "UPI",
+      "notes": "Routine consultation"
+    },
+    {
+      "id": "entry-026",
+      "name": "Home essentials",
+      "amount": 1350,
+      "type": "expense",
+      "category": "Housing",
+      "date": "2026-06-27",
+      "paymentMethod": "Card",
+      "notes": "Cleaning and storage items"
+    },
+    {
+      "id": "entry-027",
+      "name": "Side gig payout",
+      "amount": 4500,
+      "type": "income",
+      "category": "Freelance",
+      "date": "2026-06-28",
+      "paymentMethod": "Bank",
+      "notes": "Weekend consulting"
+    },
+    {
+      "id": "entry-028",
+      "name": "Family dinner outing",
+      "amount": 2300,
+      "type": "expense",
+      "category": "Food",
+      "date": "2026-06-29",
+      "paymentMethod": "Card",
+      "notes": "Month-end outing"
+    }
+  ],
+  "recurring": [
+    {
+      "id": "rec-001",
+      "name": "Monthly salary",
+      "amount": 85000,
+      "category": "Salary",
+      "type": "income",
+      "frequency": "monthly",
+      "startDate": "2026-01-01"
+    },
+    {
+      "id": "rec-002",
+      "name": "Apartment rent",
+      "amount": 18000,
+      "category": "Housing",
+      "type": "expense",
+      "frequency": "monthly",
+      "startDate": "2026-01-02"
+    },
+    {
+      "id": "rec-003",
+      "name": "Broadband recharge",
+      "amount": 899,
+      "category": "Bills",
+      "type": "expense",
+      "frequency": "monthly",
+      "startDate": "2026-01-03"
+    },
+    {
+      "id": "rec-004",
+      "name": "Gym membership",
+      "amount": 1499,
+      "category": "Fitness",
+      "type": "expense",
+      "frequency": "monthly",
+      "startDate": "2026-01-06"
+    },
+    {
+      "id": "rec-005",
+      "name": "SIP investment",
+      "amount": 5000,
+      "category": "Investment",
+      "type": "expense",
+      "frequency": "monthly",
+      "startDate": "2026-01-20"
+    }
+  ],
+  "goal": "Build a stronger emergency fund while keeping lifestyle spending under control.",
+  "onboardingCompleted": true
+}

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExpenseTrail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <section id="authScreen" class="screen auth-screen">
+      <div class="auth-layout">
+        <aside class="auth-hero glass-card">
+          <p class="eyebrow">ExpenseTrail</p>
+          <h1>Make money feel organized.</h1>
+          <p class="hero-copy">
+            A cleaner personal finance workspace with onboarding, category budgets,
+            recurring entries, reporting, and a calm modern interface.
+          </p>
+          <div class="feature-list">
+            <div class="feature-pill">Track spending and income</div>
+            <div class="feature-pill">Set category budgets</div>
+            <div class="feature-pill">Plan recurring items</div>
+            <div class="feature-pill">Export CSV and JSON</div>
+          </div>
+        </aside>
+
+        <div class="auth-card glass-card">
+          <div class="auth-tabs">
+            <button id="loginTab" class="tab-button active" type="button">Sign in</button>
+            <button id="signupTab" class="tab-button" type="button">Create account</button>
+          </div>
+
+          <form id="authForm" class="stack-form">
+            <label id="nameField" hidden>
+              <span>Name</span>
+              <input id="authName" type="text" maxlength="40" placeholder="Aarav Sharma" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input id="authEmail" type="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              <span>Password</span>
+              <input id="authPassword" type="password" minlength="6" placeholder="Minimum 6 characters" required />
+            </label>
+            <button id="authSubmit" class="primary-button wide-button" type="submit">Sign in</button>
+          </form>
+
+          <p id="authHint" class="muted-copy">Use your local account to keep your finance workspace separate on this device.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="onboardingScreen" class="screen onboarding-screen" hidden>
+      <div class="onboarding-card glass-card">
+        <div class="onboarding-progress">
+          <span id="onboardingStepLabel">Step 1 of 3</span>
+          <div class="progress-track" aria-hidden="true">
+            <span id="onboardingProgressFill"></span>
+          </div>
+        </div>
+
+        <div class="onboarding-grid">
+          <div class="onboarding-copy">
+            <p class="eyebrow">Welcome aboard</p>
+            <h2 id="onboardingTitle">Build a finance system you will actually use.</h2>
+            <p id="onboardingDescription" class="hero-copy">
+              A quick setup gives you budgets, cleaner reports, and a dashboard tuned to your priorities.
+            </p>
+          </div>
+
+          <form id="onboardingForm" class="stack-form onboarding-form">
+            <div class="onboarding-step is-active" data-step="0">
+              <label>
+                <span>Monthly budget</span>
+                <input id="onboardingBudget" type="number" min="0" step="0.01" placeholder="50000" />
+              </label>
+              <label>
+                <span>Monthly income</span>
+                <input id="onboardingIncome" type="number" min="0" step="0.01" placeholder="85000" />
+              </label>
+            </div>
+
+            <div class="onboarding-step" data-step="1" hidden>
+              <label>
+                <span>Top spending categories</span>
+                <input id="onboardingCategories" type="text" placeholder="Food, Rent, Travel, Fitness" />
+              </label>
+              <label>
+                <span>Main financial goal</span>
+                <input id="onboardingGoal" type="text" placeholder="Emergency fund, vacation, debt-free..." />
+              </label>
+            </div>
+
+            <div class="onboarding-step" data-step="2" hidden>
+              <label>
+                <span>Recurring expenses</span>
+                <textarea id="onboardingRecurring" rows="4" placeholder="Rent - 18000 monthly&#10;WiFi - 899 monthly&#10;Netflix - 649 monthly"></textarea>
+              </label>
+            </div>
+
+            <div class="modal-actions">
+              <button id="onboardingBack" class="secondary-button" type="button">Back</button>
+              <button id="onboardingNext" class="primary-button" type="button">Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboardScreen" class="screen dashboard-screen" hidden>
+      <div class="page-shell">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Personal finance dashboard</p>
+            <h1>ExpenseTrail</h1>
+            <p id="welcomeText" class="subcopy">Track spending with a cleaner, faster, more useful workflow.</p>
+          </div>
+
+          <div class="topbar-actions">
+            <input id="importFile" type="file" accept=".json,application/json" hidden />
+            <button id="importButton" class="secondary-button" type="button">Import</button>
+            <button id="exportJsonButton" class="secondary-button" type="button">Export JSON</button>
+            <button id="exportCsvButton" class="secondary-button" type="button">Export CSV</button>
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme">
+              <span class="theme-toggle-icon" aria-hidden="true">O</span>
+              <span id="themeToggleLabel">Light</span>
+            </button>
+            <button id="openEntryModal" class="primary-button" type="button">Add entry</button>
+            <button id="logoutButton" class="secondary-button" type="button">Log out</button>
+          </div>
+        </header>
+
+        <main class="dashboard">
+          <section class="hero-card">
+            <div class="hero-copy">
+              <p class="section-label">Current period</p>
+              <h2><span id="netBalance">₹0</span></h2>
+              <p id="heroStatus" class="hero-status">Your balance view updates as income and expenses change.</p>
+            </div>
+
+            <div class="hero-summary-grid">
+              <article class="summary-tile">
+                <p class="section-label">Income</p>
+                <strong id="totalIncome">₹0</strong>
+                <span id="incomeHint">No income logged yet.</span>
+              </article>
+              <article class="summary-tile">
+                <p class="section-label">Expenses</p>
+                <strong id="totalSpend">₹0</strong>
+                <span id="spendHint">No expenses logged yet.</span>
+              </article>
+              <article class="summary-tile budget-tile">
+                <div class="budget-header">
+                  <div>
+                    <p class="section-label">Monthly budget</p>
+                    <strong id="budgetValue">₹0</strong>
+                  </div>
+                  <label class="budget-input-wrap" for="budgetLimit">
+                    <span>Budget</span>
+                    <input id="budgetLimit" type="number" min="0" step="0.01" placeholder="50000" />
+                  </label>
+                </div>
+                <div class="budget-bar" aria-hidden="true">
+                  <span id="budgetFill"></span>
+                </div>
+                <div class="budget-meta">
+                  <span id="budgetMetaLeft">No budget set</span>
+                  <span id="budgetMetaRight">0%</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="stats-grid" aria-label="Summary metrics">
+            <article class="stat-card">
+              <p class="section-label">Remaining budget</p>
+              <strong id="remainingBudget">₹0</strong>
+              <span id="remainingHint">Add a budget to see what is left.</span>
+            </article>
+            <article class="stat-card">
+              <p class="section-label">Entries</p>
+              <strong id="entryCount">0</strong>
+              <span id="entryCountHint">No activity yet.</span>
+            </article>
+            <article class="stat-card">
+              <p class="section-label">Top category</p>
+              <strong id="topCategory">None</strong>
+              <span id="topCategoryHint">Your biggest category will appear here.</span>
+            </article>
+            <article class="stat-card">
+              <p class="section-label">Recurring this month</p>
+              <strong id="recurringCount">0</strong>
+              <span id="recurringHint">Create recurring items for predictable planning.</span>
+            </article>
+          </section>
+
+          <section class="content-grid">
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="section-label">Entries</p>
+                  <h3>Activity feed</h3>
+                </div>
+              </div>
+
+              <div class="filters filters-wide">
+                <label>
+                  <span>Type</span>
+                  <select id="filterType">
+                    <option value="All">All</option>
+                    <option value="expense">Expense</option>
+                    <option value="income">Income</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Category</span>
+                  <select id="filterCategory">
+                    <option value="All">All</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Range</span>
+                  <select id="filterRange">
+                    <option value="all">All time</option>
+                    <option value="month">This month</option>
+                    <option value="week">This week</option>
+                    <option value="custom">Custom</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Search</span>
+                  <input id="searchEntry" type="search" placeholder="Search by name" />
+                </label>
+              </div>
+
+              <div id="customRangeFields" class="filters custom-range-fields" hidden>
+                <label>
+                  <span>From</span>
+                  <input id="rangeStart" type="date" />
+                </label>
+                <label>
+                  <span>To</span>
+                  <input id="rangeEnd" type="date" />
+                </label>
+              </div>
+
+              <div id="entryList" class="expense-list" aria-live="polite"></div>
+            </article>
+
+            <article class="panel chart-panel">
+              <div class="panel-header">
+                <div>
+                  <p class="section-label">Analytics</p>
+                  <h3>Spending breakdown</h3>
+                </div>
+              </div>
+
+              <div class="chart-wrap">
+                <canvas id="expenseChart"></canvas>
+                <div id="chartEmptyState" class="chart-empty-state">
+                  Add a few expenses to generate your category view.
+                </div>
+              </div>
+            </article>
+          </section>
+
+          <section class="content-grid lower-grid">
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="section-label">Category budgets</p>
+                  <h3>Spending guardrails</h3>
+                </div>
+                <button id="openBudgetModal" class="secondary-button" type="button">Edit budgets</button>
+              </div>
+              <div id="categoryBudgetList" class="budget-list"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="section-label">Recurring items</p>
+                  <h3>Planned repeats</h3>
+                </div>
+                <button id="openRecurringModal" class="secondary-button" type="button">Add recurring</button>
+              </div>
+              <div id="recurringList" class="expense-list"></div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </section>
+  </div>
+
+  <div id="entryModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="entry"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="entryModalTitle">
+      <div class="modal-header">
+        <div>
+          <p class="section-label">New activity</p>
+          <h2 id="entryModalTitle">Add entry</h2>
+        </div>
+        <button class="icon-button subtle-button" type="button" data-close-modal="entry" aria-label="Close dialog">X</button>
+      </div>
+
+      <form id="entryForm" class="stack-form">
+        <div class="pill-switch">
+          <button class="pill-option active" type="button" data-entry-type="expense">Expense</button>
+          <button class="pill-option" type="button" data-entry-type="income">Income</button>
+        </div>
+
+        <label>
+          <span>Name</span>
+          <input id="entryName" type="text" maxlength="80" placeholder="Salary, grocery run, rent..." required />
+        </label>
+
+        <div class="form-row">
+          <label>
+            <span>Amount</span>
+            <input id="entryAmount" type="number" min="0.01" step="0.01" placeholder="0.00" required />
+          </label>
+          <div class="category-field">
+            <label>
+              <span>Category</span>
+              <select id="entryCategory"></select>
+            </label>
+            <button id="showCategoryCreator" class="secondary-button add-category-button" type="button">New category</button>
+          </div>
+        </div>
+
+        <div id="categoryCreator" class="category-creator" hidden>
+          <label>
+            <span>Create category</span>
+            <input id="newCategoryName" type="text" maxlength="24" placeholder="Freelance, Fitness, Pets..." />
+          </label>
+          <button id="saveCategory" class="secondary-button" type="button">Save category</button>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Date</span>
+            <input id="entryDate" type="date" required />
+          </label>
+          <label>
+            <span>Payment method</span>
+            <select id="entryPaymentMethod">
+              <option value="Card">Card</option>
+              <option value="UPI">UPI</option>
+              <option value="Cash">Cash</option>
+              <option value="Bank">Bank</option>
+              <option value="Wallet">Wallet</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          <span>Notes</span>
+          <textarea id="entryNotes" rows="3" placeholder="Optional note or context"></textarea>
+        </label>
+
+        <div class="modal-actions">
+          <button id="submitEntry" class="primary-button" type="submit">Save entry</button>
+          <button id="cancelEntry" class="secondary-button" type="button" data-close-modal="entry">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="budgetModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="budget"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="budgetModalTitle">
+      <div class="modal-header">
+        <div>
+          <p class="section-label">Category budgets</p>
+          <h2 id="budgetModalTitle">Edit category budgets</h2>
+        </div>
+        <button class="icon-button subtle-button" type="button" data-close-modal="budget" aria-label="Close dialog">X</button>
+      </div>
+
+      <form id="budgetForm" class="stack-form">
+        <div id="budgetFormRows" class="stack-form"></div>
+        <div class="modal-actions">
+          <button class="primary-button" type="submit">Save budgets</button>
+          <button class="secondary-button" type="button" data-close-modal="budget">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="recurringModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="recurring"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="recurringModalTitle">
+      <div class="modal-header">
+        <div>
+          <p class="section-label">Recurring entry</p>
+          <h2 id="recurringModalTitle">Add recurring item</h2>
+        </div>
+        <button class="icon-button subtle-button" type="button" data-close-modal="recurring" aria-label="Close dialog">X</button>
+      </div>
+
+      <form id="recurringForm" class="stack-form">
+        <div class="pill-switch">
+          <button class="pill-option active" type="button" data-recurring-type="expense">Expense</button>
+          <button class="pill-option" type="button" data-recurring-type="income">Income</button>
+        </div>
+
+        <label>
+          <span>Name</span>
+          <input id="recurringName" type="text" maxlength="80" placeholder="Rent, salary, SIP..." required />
+        </label>
+
+        <div class="form-row">
+          <label>
+            <span>Amount</span>
+            <input id="recurringAmount" type="number" min="0.01" step="0.01" required />
+          </label>
+          <label>
+            <span>Category</span>
+            <select id="recurringCategory"></select>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Frequency</span>
+            <select id="recurringFrequency">
+              <option value="monthly">Monthly</option>
+              <option value="weekly">Weekly</option>
+            </select>
+          </label>
+          <label>
+            <span>Start date</span>
+            <input id="recurringStartDate" type="date" required />
+          </label>
+        </div>
+
+        <div class="modal-actions">
+          <button class="primary-button" type="submit">Save recurring</button>
+          <button class="secondary-button" type="button" data-close-modal="recurring">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

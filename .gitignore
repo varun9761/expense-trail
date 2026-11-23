@@ -1,0 +1,12 @@
+# Logs & OS metadata
+.DS_Store
+Thumbs.db
+*.log
+
+# Editor settings
+.vscode/
+
+# Build & deployment artifacts
+*.class
+.vercel/
+node_modules/
