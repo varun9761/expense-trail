@@ -4,6 +4,20 @@ ExpenseTrail is a responsive personal finance dashboard built with HTML, CSS, Va
 
 The project currently runs fully on the client side and stores user data locally in the browser using `localStorage`, which makes it easy to run, demo, and extend without a backend.
 
+## Deployment & Continuous Delivery
+
+This project is configured for continuous deployment on **Vercel** connected directly with **GitHub**:
+
+- **Repository**: [github.com/varun9761/expense-trail](https://github.com/varun9761/expense-trail)
+- **Automatic Redeployment**: Any push to the `main` branch automatically triggers an updated deployment on Vercel.
+
+```bash
+# Workflow for future updates:
+git add .
+git commit -m "Update feature or style"
+git push origin main
+```
+
 ## Project Highlights
 
 - Local sign up and sign in flow
